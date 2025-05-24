@@ -111,7 +111,7 @@ const handleMarkAsPaid = async () => {
               <input
                 type="text"
                 id="fullname"
-                placeholder="e.g. Praveen Kumar"
+                placeholder="Please enter fullname"
                 className="w-full bg-neutral-200/60 dark:bg-neutral-900/60 px-3 py-2 border rounded-md"
                 value={fullname}
                 onChange={(e) => setFullname(e.target.value)}
@@ -125,7 +125,7 @@ const handleMarkAsPaid = async () => {
               <input
                 type="email"
                 id="email"
-                placeholder="e.g. bobypraveen98@gmail.com"
+                placeholder="e.g. gbusholiday@gmail.com"
                 className="w-full bg-neutral-200/60 dark:bg-neutral-900/60 px-3 py-2 border rounded-md"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -142,7 +142,7 @@ const handleMarkAsPaid = async () => {
               <input
                 type="tel"
                 id="phonenumber"
-                placeholder="e.g. +91 9876543210"
+                placeholder="e.g. +91 1234567890"
                 className="w-full bg-neutral-200/60 dark:bg-neutral-900/60 px-3 py-2 border rounded-md"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
@@ -222,34 +222,66 @@ const handleMarkAsPaid = async () => {
       </div>
 
       {/* QR Code Modal */}
-      {showQRCode && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-lg p-4 sm:p-6 w-[90%] max-w-xs relative">
-            <button
-              onClick={() => setShowQRCode(false)}
-              className="absolute top-2 right-3 text-neutral-500 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-white text-xl font-bold"
-            >
-              ×
-            </button>
-            <h2 className="text-lg font-medium text-center mb-4">
-              Scan to pay QR Code
-            </h2>
-            <div className="mb-5 flex justify-center">
-              <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=payment"
-                alt="QR Code"
-                className="w-32 h-32"
-              />
-            </div>
-            <button
-              onClick={handleMarkAsPaid}
-              className="w-full bg-violet-600 text-white rounded-md py-2 text-lg"
-            >
-              Mark as Paid
-            </button>
-          </div>
-        </div>
-      )}
+{showQRCode && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+    <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-lg p-4 sm:p-6 w-[90%] max-w-xs relative">
+      <button
+        onClick={() => setShowQRCode(false)}
+        className="absolute top-2 right-3 text-neutral-500 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-white text-xl font-bold"
+      >
+        ×
+      </button>
+      <h2 className="text-lg font-medium text-center mb-4">
+        Scan to pay QR Code
+      </h2>
+      <div className="mb-5 flex justify-center">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=payment"
+          alt="QR Code"
+          className="w-32 h-32"
+        />
+      </div>
+
+      {/* Payment Options */}
+      <div className="mb-5 space-y-3">
+        {/* Google Pay (using fa-mobile-screen-button as placeholder) */}
+        <button
+          onClick={() => alert('Google Pay selected')}
+          className="flex items-center justify-center w-full bg-gray-100 dark:bg-neutral-700 hover:bg-gray-200 dark:hover:bg-neutral-600 rounded-md py-2 text-lg text-gray-800 dark:text-white"
+        >
+          <i className="fa-solid fa-mobile-screen-button mr-3 text-2xl"></i>
+          Pay with Google Pay
+        </button>
+
+        {/* PayPal */}
+        <button
+          onClick={() => alert('PayPal selected')}
+          className="flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 rounded-md py-2 text-lg text-white"
+        >
+          <i className="fa-brands fa-paypal mr-3 text-2xl"></i>
+          Pay with PayPal
+        </button>
+
+        {/* Paytm (using fa-wallet as placeholder) */}
+        <button
+          onClick={() => alert('Paytm selected')}
+          className="flex items-center justify-center w-full bg-blue-500 hover:bg-blue-600 rounded-md py-2 text-lg text-white"
+        >
+          <i className="fa-solid fa-wallet mr-3 text-2xl"></i>
+          Pay with Paytm
+        </button>
+      </div>
+
+      <button
+        onClick={handleMarkAsPaid}
+        className="w-full bg-violet-600 text-white rounded-md py-2 text-lg"
+      >
+        Mark as Paid
+      </button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
